@@ -292,9 +292,7 @@ export function ProjectTasks({ project }: ProjectTasksProps) {
               </div>
               <div className="space-y-3">
                 {getTasksByStatus(column.id).map(task => (
-                  <div key={task.id}>
-                    <TaskCard task={task} />
-                  </div>
+                  <TaskCard key={task.id} task={task} />
                 ))}
                 <Button 
                   variant="dashed" 

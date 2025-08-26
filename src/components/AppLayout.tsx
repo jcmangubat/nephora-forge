@@ -2,6 +2,11 @@ import { SidebarProvider, SidebarTrigger } from "./ui/sidebar"
 import { DashboardSidebar } from "./DashboardSidebar"
 import { ProjectsPage } from "./ProjectsPage"
 import { ProjectDetailPage } from "./ProjectDetailPage"
+import { AddProjectWizard } from "./AddProjectWizard"
+import { PersonnelPage } from "./PersonnelPage"
+import { EquipmentPage } from "./EquipmentPage"
+import { SafetyPage } from "./SafetyPage"
+import { QualityControlPage } from "./QualityControlPage"
 import { AnalyticsCharts } from "./AnalyticsCharts"
 import { PersonnelTable } from "./PersonnelTable"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
@@ -247,6 +252,19 @@ export function AppLayout() {
             <ProjectsPage />
           </>
         )
+      case "add-project":
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <AddProjectWizard />
+          </>
+        )
       case "project-detail":
         return (
           <>
@@ -261,13 +279,57 @@ export function AppLayout() {
           </>
         )
       case "personnel":
-        return <PlaceholderPage title="Personnel Management" description="Manage workforce and team assignments" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <PersonnelPage />
+          </>
+        )
       case "equipment":
-        return <PlaceholderPage title="Equipment Management" description="Track and manage construction equipment" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <EquipmentPage />
+          </>
+        )
       case "safety":
-        return <PlaceholderPage title="Safety & Compliance" description="Monitor safety protocols and compliance" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <SafetyPage />
+          </>
+        )
       case "quality":
-        return <PlaceholderPage title="Quality Control" description="Manage quality inspections and standards" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <QualityControlPage />
+          </>
+        )
       case "analytics":
         return <PlaceholderPage title="Analytics & Reports" description="View detailed analytics and reports" />
       case "users":

@@ -57,7 +57,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "copy404": "cp dist/index.html dist/404.html || copy dist\\index.html dist\\404.html",
-    "predeploy": "npm run build && npm run copy404",    
+    "predeploy": "npm run build && npm run copy404",
     "deploy": "gh-pages -d dist"
   }
 }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { 
   Calendar, 
   Users, 
@@ -127,8 +127,7 @@ const getPhaseColor = (phase: Project['phase']) => {
 
 export function ProjectsPage() {
   const [expandedProject, setExpandedProject] = useState<string | null>(null)
-  const [showNewProjectDialog, setShowNewProjectDialog] = useState(false)
-  const { navigateToProject } = useNavigation()
+  const { navigateToProject, navigateToAddProject } = useNavigation()
 
   const toggleProjectExpansion = (projectId: string) => {
     setExpandedProject(expandedProject === projectId ? null : projectId)
@@ -149,7 +148,7 @@ export function ProjectsPage() {
           </p>
         </div>
         <Button 
-          onClick={() => setShowNewProjectDialog(true)}
+          onClick={navigateToAddProject}
           className="bg-orange-500 hover:bg-orange-600 text-white"
         >
           <Plus className="mr-2 h-4 w-4" />
@@ -223,8 +222,8 @@ export function ProjectsPage() {
             </TableHeader>
             <TableBody>
               {mockProjects.map((project) => (
-                <>
-                  <TableRow key={project.id} className="cursor-pointer hover:bg-muted/50">
+                <React.Fragment key={project.id}>
+                  <TableRow className="cursor-pointer hover:bg-muted/50">
                     <TableCell className="font-mono">{project.code}</TableCell>
                     <TableCell onClick={() => handleProjectClick(project)}>
                       <div>
@@ -297,15 +296,15 @@ export function ProjectsPage() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={() => handleProjectClick(project)}>
+                            <DropdownMenuItem key="view" onClick={() => handleProjectClick(project)}>
                               <Eye className="mr-2 h-4 w-4" />
                               View Details
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem key="edit">
                               <Edit className="mr-2 h-4 w-4" />
                               Edit
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem key="archive">
                               <Archive className="mr-2 h-4 w-4" />
                               Archive
                             </DropdownMenuItem>
@@ -317,7 +316,7 @@ export function ProjectsPage() {
                   
                   {/* Expandable Project Details */}
                   {expandedProject === project.id && (
-                    <TableRow>
+                    <TableRow key={`${project.id}-expanded`}>
                       <TableCell colSpan={8} className="p-0">
                         <Collapsible open={true}>
                           <CollapsibleContent>
@@ -433,7 +432,7 @@ export function ProjectsPage() {
                       </TableCell>
                     </TableRow>
                   )}
-                </>
+                </React.Fragment>
               ))}
             </TableBody>
           </Table>
