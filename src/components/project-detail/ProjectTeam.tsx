@@ -43,7 +43,7 @@ interface ProjectTeamProps {
 const mockTeamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Sarah Chen",
+    name: "Sarah Chua",
     role: "Project Manager",
     email: "sarah.chen@nephoraforge.com",
     phone: "+1 (555) 123-4567",
@@ -55,7 +55,7 @@ const mockTeamMembers: TeamMember[] = [
   },
   {
     id: "2",
-    name: "John Smith",
+    name: "Juan dela Cruz",
     role: "Site Engineer",
     email: "john.smith@nephoraforge.com", 
     phone: "+1 (555) 234-5678",
@@ -91,7 +91,7 @@ const mockTeamMembers: TeamMember[] = [
   },
   {
     id: "5",
-    name: "David Park",
+    name: "Lara David",
     role: "Steel Worker",
     email: "david.park@nephoraforge.com",
     phone: "+1 (555) 567-8901",

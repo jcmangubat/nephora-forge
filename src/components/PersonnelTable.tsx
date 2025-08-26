@@ -34,7 +34,7 @@ const personnel = [
   },
   {
     id: "2",
-    name: "Sarah Chen",
+    name: "Sarah Chua",
     email: "sarah.chen@nephoraforge.com",
     role: "Safety Inspector",
     certification: "CSP, CHST",
@@ -44,7 +44,7 @@ const personnel = [
   },
   {
     id: "3",
-    name: "David Thompson",
+    name: "Pete Katigbak",
     email: "david.thompson@nephoraforge.com",
     role: "Equipment Operator",
     certification: "NCCCO Crane",

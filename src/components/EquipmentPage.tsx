@@ -129,7 +129,7 @@ const mockEquipment: Equipment[] = [
         description: "Minor hydraulic fluid leak from main cylinder",
         severity: "Medium",
         status: "In Progress",
-        reportedBy: "John Smith",
+        reportedBy: "Juan dela Cruz",
         reportedDate: "2024-01-20"
       }
     ],
@@ -183,7 +183,7 @@ const mockEquipment: Equipment[] = [
         description: "Main motor showing signs of wear, replacement scheduled",
         severity: "High",
         status: "In Progress",
-        reportedBy: "David Thompson",
+        reportedBy: "Pete Katigbak",
         reportedDate: "2024-01-25"
       }
     ],

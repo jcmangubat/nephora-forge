@@ -45,7 +45,7 @@ const mockFiles: ProjectFile[] = [
     type: "pdf",
     size: "15.2 MB",
     category: "Plans",
-    uploadedBy: "Sarah Chen",
+    uploadedBy: "Sarah Chua",
     uploadedAt: "2024-08-20",
     url: "#"
   },
@@ -55,7 +55,7 @@ const mockFiles: ProjectFile[] = [
     type: "pdf",
     size: "8.7 MB",
     category: "Reports",
-    uploadedBy: "John Smith",
+    uploadedBy: "Juan dela Cruz",
     uploadedAt: "2024-08-18",
     url: "#"
   },
@@ -85,7 +85,7 @@ const mockFiles: ProjectFile[] = [
     type: "xlsx",
     size: "1.8 MB",
     category: "Specifications",
-    uploadedBy: "David Park",
+    uploadedBy: "Lara David",
     uploadedAt: "2024-08-19",
     url: "#"
   }

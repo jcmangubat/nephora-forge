@@ -45,7 +45,7 @@ const mockTasks: Task[] = [
     title: "Site Survey and Analysis",
     description: "Complete topographical survey and soil analysis",
     status: "done",
-    assignee: "John Smith",
+    assignee: "Juan dela Cruz",
     dueDate: "2024-08-20",
     priority: "high",
     tags: ["Planning", "Survey"]
@@ -65,7 +65,7 @@ const mockTasks: Task[] = [
     title: "Concrete Pouring - Level 1",
     description: "Pour concrete for first floor foundation",
     status: "in-progress",
-    assignee: "Sarah Chen",
+    assignee: "Sarah Chua",
     dueDate: "2024-08-25",
     priority: "high",
     tags: ["Concrete", "Foundation"]
@@ -75,7 +75,7 @@ const mockTasks: Task[] = [
     title: "Steel Framework Installation",
     description: "Install main structural steel framework",
     status: "in-progress",
-    assignee: "David Park",
+    assignee: "Lara David",
     dueDate: "2024-08-28",
     priority: "medium",
     tags: ["Steel", "Structure"]
@@ -95,7 +95,7 @@ const mockTasks: Task[] = [
     title: "Plumbing Installation",
     description: "Install main plumbing lines and fixtures",
     status: "todo",
-    assignee: "Emily Johnson",
+    assignee: "Emily delos Reyes",
     dueDate: "2024-09-05",
     priority: "medium",
     tags: ["Plumbing", "MEP"]
@@ -105,7 +105,7 @@ const mockTasks: Task[] = [
     title: "HVAC System Setup",
     description: "Install heating, ventilation, and air conditioning",
     status: "todo",
-    assignee: "Tom Wilson",
+    assignee: "Thomas Larossa",
     dueDate: "2024-09-10",
     priority: "low",
     tags: ["HVAC", "MEP"]
@@ -115,7 +115,7 @@ const mockTasks: Task[] = [
     title: "Safety Inspection",
     description: "Conduct comprehensive safety compliance review",
     status: "in-progress",
-    assignee: "Rachel Green",
+    assignee: "Rachelle Aqui",
     dueDate: "2024-08-26",
     priority: "high",
     tags: ["Safety", "Inspection"]

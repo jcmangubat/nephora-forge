@@ -46,7 +46,7 @@ const mockMilestones: Milestone[] = [
     status: "completed",
     progress: 100,
     dependencies: [],
-    assignedTo: "John Smith"
+    assignedTo: "Juan dela Cruz"
   },
   {
     id: "2",
@@ -56,7 +56,7 @@ const mockMilestones: Milestone[] = [
     status: "in-progress",
     progress: 75,
     dependencies: ["1"],
-    assignedTo: "Sarah Chen"
+    assignedTo: "Sarah Chua"
   },
   {
     id: "3",
@@ -66,7 +66,7 @@ const mockMilestones: Milestone[] = [
     status: "pending",
     progress: 0,
     dependencies: ["2"],
-    assignedTo: "David Park"
+    assignedTo: "Lara David"
   },
   {
     id: "4",
@@ -86,7 +86,7 @@ const mockMilestones: Milestone[] = [
     status: "pending",
     progress: 0,
     dependencies: ["4"],
-    assignedTo: "Emily Johnson"
+    assignedTo: "Emily delos Reyes"
   },
   {
     id: "6",

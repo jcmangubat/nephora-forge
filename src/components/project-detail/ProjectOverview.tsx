@@ -25,13 +25,13 @@ interface ProjectOverviewProps {
 
 export function ProjectOverview({ project }: ProjectOverviewProps) {
   const upcomingDeadlines = [
-    { task: "Complete foundation inspection", due: "2024-08-25", assignee: "John Smith", priority: "high" },
+    { task: "Complete foundation inspection", due: "2024-08-25", assignee: "Juan dela Cruz", priority: "high" },
     { task: "Install electrical systems", due: "2024-08-28", assignee: "Lisa Wong", priority: "medium" },
     { task: "Submit environmental report", due: "2024-08-30", assignee: "Mike Chen", priority: "high" }
   ]
 
   const recentUpdates = [
-    { message: "Foundation concrete poured successfully", user: "John Smith", time: "2 hours ago", type: "success" },
+    { message: "Foundation concrete poured successfully", user: "Juan dela Cruz", time: "2 hours ago", type: "success" },
     { message: "Weather delay for roofing work", user: "System", time: "4 hours ago", type: "warning" },
     { message: "Safety inspection completed", user: "Sarah Johnson", time: "1 day ago", type: "success" },
     { message: "New team member added to project", user: "Admin", time: "2 days ago", type: "info" }

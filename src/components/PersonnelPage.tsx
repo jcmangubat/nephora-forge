@@ -103,8 +103,8 @@ const mockPersonnel: PersonnelMember[] = [
   },
   {
     id: "2",
-    name: "Sarah Chen",
-    email: "sarah.chen@nephoraforge.com",
+    name: "Sarah Chua",
+    email: "sarah.chua@nephoraforge.com",
     phone: "+1 (555) 345-6789",
     role: "Safety Inspector",
     department: "Safety & Compliance",
@@ -122,8 +122,8 @@ const mockPersonnel: PersonnelMember[] = [
   },
   {
     id: "3",
-    name: "David Thompson",
-    email: "david.thompson@nephoraforge.com",
+    name: "Pete Katigbak",
+    email: "pete.katigbak@nephoraforge.com",
     phone: "+1 (555) 456-7890",
     role: "Equipment Operator",
     department: "Operations",
@@ -140,8 +140,8 @@ const mockPersonnel: PersonnelMember[] = [
   },
   {
     id: "4",
-    name: "Lisa Williams",
-    email: "lisa.williams@nephoraforge.com",
+    name: "Maria Lisa Catotal",
+    email: "maria.lisa@nephoraforge.com",
     phone: "+1 (555) 567-8901",
     role: "Project Manager",
     department: "Management",
@@ -177,8 +177,8 @@ const mockPersonnel: PersonnelMember[] = [
   },
   {
     id: "6",
-    name: "Emily Johnson",
-    email: "emily.johnson@nephoraforge.com",
+    name: "Emily delos Reyes",
+    email: "emily.dr@nephoraforge.com",
     phone: "+1 (555) 789-0123",
     role: "Electrical Engineer",
     department: "Engineering",
@@ -657,7 +657,7 @@ export function PersonnelPage() {
                   <AlertTriangle className="h-5 w-5 text-yellow-600" />
                   <div>
                     <p className="font-medium">Certification Expiring</p>
-                    <p className="text-sm text-muted-foreground">Sarah Chen's CSP expires in 30 days</p>
+                    <p className="text-sm text-muted-foreground">Sarah Chua's CSP expires in 30 days</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3 p-3 border rounded-lg bg-blue-50 dark:bg-blue-950/20">

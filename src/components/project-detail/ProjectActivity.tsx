@@ -38,7 +38,7 @@ const mockActivity: ActivityItem[] = [
     type: "task",
     title: "Task Completed",
     description: "Foundation concrete pouring completed successfully",
-    user: "John Smith",
+    user: "Juan dela Cruz",
     timestamp: "2024-08-24T14:30:00Z"
   },
   {
@@ -46,7 +46,7 @@ const mockActivity: ActivityItem[] = [
     type: "file",
     title: "File Uploaded",
     description: "Safety inspection report uploaded",
-    user: "Sarah Chen",
+    user: "Sarah Chua",
     timestamp: "2024-08-24T12:15:00Z",
     metadata: { fileName: "Safety_Report_Aug2024.pdf" }
   },
@@ -72,7 +72,7 @@ const mockActivity: ActivityItem[] = [
     type: "update",
     title: "Project Updated",
     description: "Project timeline adjusted due to weather conditions",
-    user: "Sarah Chen",
+    user: "Sarah Chua",
     timestamp: "2024-08-23T09:30:00Z"
   },
   {
@@ -80,7 +80,7 @@ const mockActivity: ActivityItem[] = [
     type: "task",
     title: "Task Created",
     description: "New task created: Install electrical systems",
-    user: "David Park",
+    user: "Lara David",
     timestamp: "2024-08-22T15:10:00Z"
   },
   {
@@ -88,7 +88,7 @@ const mockActivity: ActivityItem[] = [
     type: "file",
     title: "File Updated",
     description: "Architectural plans revised (v2.1)",
-    user: "Emily Johnson",
+    user: "Emily delos Reyes",
     timestamp: "2024-08-22T11:45:00Z",
     metadata: { fileName: "Architectural_Plans_v2.1.pdf" }
   },
@@ -97,7 +97,7 @@ const mockActivity: ActivityItem[] = [
     type: "milestone",
     title: "Milestone Started",
     description: "Foundation phase work initiated",
-    user: "John Smith",
+    user: "Juan dela Cruz",
     timestamp: "2024-08-21T08:00:00Z"
   }
 ]

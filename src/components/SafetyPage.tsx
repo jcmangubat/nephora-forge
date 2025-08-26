@@ -141,7 +141,7 @@ const mockIncidents: SafetyIncident[] = [
     severity: "High",
     status: "Open",
     location: "Downtown Site - Zone B",
-    reportedBy: "Sarah Chen",
+    reportedBy: "Sarah Chua",
     reportedDate: "2024-01-18",
     assignedTo: "John Safety Manager",
     category: "Near Miss"
@@ -153,7 +153,7 @@ const mockIncidents: SafetyIncident[] = [
     severity: "Medium",
     status: "Resolved",
     location: "Storage Facility",
-    reportedBy: "David Thompson",
+    reportedBy: "Pete Katigbak",
     reportedDate: "2024-01-15",
     resolvedDate: "2024-01-16",
     category: "Environmental"
@@ -201,7 +201,7 @@ const mockInspections: SafetyInspection[] = [
     id: "1",
     title: "Weekly Site Safety Inspection",
     location: "Downtown Site",
-    inspector: "Sarah Chen",
+    inspector: "Sarah Chua",
     scheduledDate: "2024-01-22",
     status: "Scheduled",
     issues: 0
@@ -222,7 +222,7 @@ const mockInspections: SafetyInspection[] = [
     id: "3",
     title: "Fire Safety Inspection",
     location: "Office Building",
-    inspector: "David Thompson",
+    inspector: "Pete Katigbak",
     scheduledDate: "2024-01-15",
     status: "Overdue",
     issues: 0
@@ -244,7 +244,7 @@ const mockTraining: TrainingRecord[] = [
   {
     id: "2",
     courseName: "First Aid & CPR Certification",
-    employee: "Sarah Chen",
+    employee: "Sarah Chua",
     status: "Expired",
     assignedDate: "2022-06-01",
     completionDate: "2022-06-15",
@@ -255,7 +255,7 @@ const mockTraining: TrainingRecord[] = [
   {
     id: "3",
     courseName: "Hazard Communication Training",
-    employee: "David Thompson",
+    employee: "Pete Katigbak",
     status: "In Progress",
     assignedDate: "2024-01-10",
     mandatory: false

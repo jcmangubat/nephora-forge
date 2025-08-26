@@ -52,7 +52,7 @@ const mockProjects: Project[] = [
     endDate: "2025-12-30",
     progress: 65,
     phase: "In Progress",
-    manager: { name: "Sarah Chen", avatar: "" },
+    manager: { name: "Sarah Chua", avatar: "" },
     teamSize: 24,
     budget: "₱45.2M",
     location: "Downtown District"
@@ -80,7 +80,7 @@ const mockProjects: Project[] = [
     endDate: "2025-10-20",
     progress: 28,
     phase: "In Progress",
-    manager: { name: "Emily Johnson", avatar: "" },
+    manager: { name: "Emily delos Reyes", avatar: "" },
     teamSize: 32,
     budget: "₱67.8M",
     location: "International Airport"
@@ -94,7 +94,7 @@ const mockProjects: Project[] = [
     endDate: "2024-11-30",
     progress: 89,
     phase: "In Progress",
-    manager: { name: "David Park", avatar: "" },
+    manager: { name: "Lara David", avatar: "" },
     teamSize: 16,
     budget: "₱32.1M",
     location: "Uptown"
