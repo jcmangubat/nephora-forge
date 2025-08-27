@@ -129,7 +129,7 @@ const mockIncidents: SafetyIncident[] = [
     severity: "Low",
     status: "Under Investigation",
     location: "Warehouse A - Section 2",
-    reportedBy: "Mike Rodriguez",
+    reportedBy: "John dela Cruz",
     reportedDate: "2024-01-20",
     assignedTo: "Safety Team",
     category: "Injury"
@@ -140,10 +140,10 @@ const mockIncidents: SafetyIncident[] = [
     description: "Worker almost struck by crane load due to communication breakdown",
     severity: "High",
     status: "Open",
-    location: "Downtown Site - Zone B",
-    reportedBy: "Sarah Chua",
+    location: "Makati Site - Zone B",
+    reportedBy: "Maria Santos",
     reportedDate: "2024-01-18",
-    assignedTo: "John Safety Manager",
+    assignedTo: "Engr. Roberto Villarosa",
     category: "Near Miss"
   },
   {
@@ -152,7 +152,7 @@ const mockIncidents: SafetyIncident[] = [
     description: "Small chemical spill quickly contained with proper protocols",
     severity: "Medium",
     status: "Resolved",
-    location: "Storage Facility",
+    location: "Storage Facility - Quezon City",
     reportedBy: "Pete Katigbak",
     reportedDate: "2024-01-15",
     resolvedDate: "2024-01-16",
@@ -163,25 +163,25 @@ const mockIncidents: SafetyIncident[] = [
 const mockDocuments: ComplianceDocument[] = [
   {
     id: "1",
-    name: "OSHA Construction Safety License",
+    name: "DOLE Safety Program License",
     type: "License",
     expiryDate: "2024-06-15",
     status: "Expiring Soon",
-    owner: "NephoraForge Construction",
+    owner: "NephoraForge Construction Philippines",
     lastUpdated: "2023-05-20",
     version: "v2.1",
     uploadedBy: "Admin User"
   },
   {
     id: "2",
-    name: "Environmental Permit - Downtown Site",
+    name: "Environmental Permit - Makati Site",
     type: "Permit",
     expiryDate: "2024-12-31",
     status: "Active",
-    owner: "Environmental Dept",
+    owner: "Environmental Department",
     lastUpdated: "2024-01-10",
     version: "v1.3",
-    uploadedBy: "Lisa Williams"
+    uploadedBy: "Liza Reyes"
   },
   {
     id: "3",
@@ -189,10 +189,10 @@ const mockDocuments: ComplianceDocument[] = [
     type: "Certification",
     expiryDate: "2023-12-01",
     status: "Expired",
-    owner: "Quality Assurance",
+    owner: "Quality Assurance Department",
     lastUpdated: "2023-11-15",
     version: "v3.0",
-    uploadedBy: "Carlos Martinez"
+    uploadedBy: "Carlos Ramirez"
   }
 ]
 
@@ -200,8 +200,8 @@ const mockInspections: SafetyInspection[] = [
   {
     id: "1",
     title: "Weekly Site Safety Inspection",
-    location: "Downtown Site",
-    inspector: "Sarah Chua",
+    location: "Makati Site",
+    inspector: "Maria Santos",
     scheduledDate: "2024-01-22",
     status: "Scheduled",
     issues: 0
@@ -209,8 +209,8 @@ const mockInspections: SafetyInspection[] = [
   {
     id: "2",
     title: "Equipment Safety Check",
-    location: "Equipment Yard",
-    inspector: "Mike Rodriguez",
+    location: "Equipment Yard - Quezon City",
+    inspector: "John dela Cruz",
     scheduledDate: "2024-01-20",
     completedDate: "2024-01-20",
     status: "Completed",
@@ -221,7 +221,7 @@ const mockInspections: SafetyInspection[] = [
   {
     id: "3",
     title: "Fire Safety Inspection",
-    location: "Office Building",
+    location: "Office Building - Ortigas",
     inspector: "Pete Katigbak",
     scheduledDate: "2024-01-15",
     status: "Overdue",
@@ -232,19 +232,19 @@ const mockInspections: SafetyInspection[] = [
 const mockTraining: TrainingRecord[] = [
   {
     id: "1",
-    courseName: "OSHA 30-Hour Construction Safety",
-    employee: "Mike Rodriguez",
+    courseName: "DOLE 40-Hour Construction Safety",
+    employee: "John dela Cruz",
     status: "Completed",
     assignedDate: "2023-12-01",
     completionDate: "2023-12-15",
     expiryDate: "2026-12-15",
-    certificateId: "OSHA-30-2023-001",
+    certificateId: "DOLE-40-2023-001",
     mandatory: true
   },
   {
     id: "2",
     courseName: "First Aid & CPR Certification",
-    employee: "Sarah Chua",
+    employee: "Maria Santos",
     status: "Expired",
     assignedDate: "2022-06-01",
     completionDate: "2022-06-15",

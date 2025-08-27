@@ -7,6 +7,10 @@ import { PersonnelPage } from "./PersonnelPage"
 import { EquipmentPage } from "./EquipmentPage"
 import { SafetyPage } from "./SafetyPage"
 import { QualityControlPage } from "./QualityControlPage"
+import { AnalyticsPage } from "./AnalyticsPage"
+import { UserManagementPage } from "./UserManagementPage"
+import { SystemSettingsPage } from "./SystemSettingsPage"
+import { SystemMaintenancePage } from "./SystemMaintenancePage"
 import { AnalyticsCharts } from "./AnalyticsCharts"
 import { PersonnelTable } from "./PersonnelTable"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
@@ -331,13 +335,57 @@ export function AppLayout() {
           </>
         )
       case "analytics":
-        return <PlaceholderPage title="Analytics & Reports" description="View detailed analytics and reports" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <AnalyticsPage />
+          </>
+        )
       case "users":
-        return <PlaceholderPage title="User Management" description="Manage system users and permissions" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <UserManagementPage />
+          </>
+        )
       case "settings":
-        return <PlaceholderPage title="System Settings" description="Configure system settings and preferences" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <SystemSettingsPage />
+          </>
+        )
       case "maintenance":
-        return <PlaceholderPage title="System Maintenance" description="System maintenance and diagnostics" />
+        return (
+          <>
+            <div className="border-b bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20">
+              <div className="flex h-20 items-center justify-between px-4">
+                <div className="flex items-center space-x-4">
+                  <SidebarTrigger />
+                </div>
+              </div>
+            </div>
+            <SystemMaintenancePage />
+          </>
+        )
       default:
         return <DashboardPage />
     }

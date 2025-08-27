@@ -55,7 +55,7 @@ const mockTeamMembers: TeamMember[] = [
   },
   {
     id: "2",
-    name: "Juan dela Cruz",
+    name: "John dela Cruz",
     role: "Site Engineer",
     email: "john.smith@nephoraforge.com", 
     phone: "+1 (555) 234-5678",

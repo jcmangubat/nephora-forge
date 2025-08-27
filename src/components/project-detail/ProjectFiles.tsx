@@ -55,7 +55,7 @@ const mockFiles: ProjectFile[] = [
     type: "pdf",
     size: "8.7 MB",
     category: "Reports",
-    uploadedBy: "Juan dela Cruz",
+    uploadedBy: "John dela Cruz",
     uploadedAt: "2024-08-18",
     url: "#"
   },

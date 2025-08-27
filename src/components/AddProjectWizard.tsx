@@ -1,70 +1,58 @@
-import { useState } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Save,
-  X,
-  Calendar,
-  User,
-  MapPin,
-  Users,
-  Target,
+import { useState } from "react"
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  Save, 
+  X, 
+  Calendar, 
+  User, 
+  MapPin, 
+  Users, 
+  Target, 
   DollarSign,
   Upload,
   CheckCircle,
   FileText,
-  Building,
-} from "lucide-react";
-import { Button } from "../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import { Badge } from "./ui/badge";
-import { Progress } from "./ui/progress";
-import { Separator } from "./ui/separator";
-import { useNavigation, Project } from "./NavigationProvider";
+  Building
+} from "lucide-react"
+import { Button } from "./ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
+import { Textarea } from "./ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
+import { Badge } from "./ui/badge"
+import { Progress } from "./ui/progress"
+import { Separator } from "./ui/separator"
+import { useNavigation, Project } from "./NavigationProvider"
 
 interface ProjectFormData {
   // Project Metadata
-  code: string;
-  name: string;
-  description: string;
-  status: "Planned" | "In Progress" | "Completed" | "On Hold";
-  startDate: string;
-  endDate: string;
-  managerId: string;
-
+  code: string
+  name: string
+  description: string
+  status: "Planned" | "In Progress" | "Completed" | "On Hold"
+  startDate: string
+  endDate: string
+  managerId: string
+  
   // Location & Client
-  clientName: string;
-  location: string;
-
+  clientName: string
+  location: string
+  
   // Team & Resources
-  teamMembers: string[];
-  estimatedTeamSize: number;
-
+  teamMembers: string[]
+  estimatedTeamSize: number
+  
   // Milestones
-  milestones: Array<{ name: string; dueDate: string; description: string }>;
-
+  milestones: Array<{ name: string; dueDate: string; description: string }>
+  
   // Budget
-  estimatedBudget: string;
-  currency: string;
-
+  estimatedBudget: string
+  currency: string
+  
   // Attachments
-  attachments: File[];
+  attachments: File[]
 }
 
 const initialFormData: ProjectFormData = {
@@ -82,122 +70,107 @@ const initialFormData: ProjectFormData = {
   milestones: [{ name: "", dueDate: "", description: "" }],
   estimatedBudget: "",
   currency: "USD",
-  attachments: [],
-};
+  attachments: []
+}
 
 const mockUsers = [
   { id: "1", name: "Sarah Chua", role: "Project Manager" },
-  { id: "2", name: "Juan dela Cruz", role: "Site Engineer" },
+  { id: "2", name: "John dela Cruz", role: "Site Engineer" },
   { id: "3", name: "Mike Rodriguez", role: "Construction Supervisor" },
   { id: "4", name: "Lisa Wang", role: "Electrical Engineer" },
   { id: "5", name: "Lara David", role: "Steel Worker" },
-  { id: "6", name: "Emily delos Reyes", role: "Safety Inspector" },
-];
+  { id: "6", name: "Emily Delgado", role: "Safety Inspector" }
+]
 
 const generateProjectCode = (): string => {
-  const year = new Date().getFullYear();
-  const random = Math.floor(Math.random() * 1000)
-    .toString()
-    .padStart(3, "0");
-  return `PRJ-${year}-${random}`;
-};
+  const year = new Date().getFullYear()
+  const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0')
+  return `PRJ-${year}-${random}`
+}
 
 export function AddProjectWizard() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({
+  const [currentStep, setCurrentStep] = useState(1)
+  const [formData, setFormData] = useState<ProjectFormData>({
     ...initialFormData,
-    code: generateProjectCode(),
-  } as ProjectFormData);
-  const [errors, setErrors] = useState({});
-  const { navigateBack } = useNavigation();
+    code: generateProjectCode()
+  })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const { navigateBack } = useNavigation()
 
-  const totalSteps = 4;
-  const progress = (currentStep / totalSteps) * 100;
+  const totalSteps = 4
+  const progress = (currentStep / totalSteps) * 100
 
   const validateStep = (step: number): boolean => {
-    const newErrors: Record<string, string> = {};
+    const newErrors: Record<string, string> = {}
 
     switch (step) {
       case 1:
-        if (!formData.name.trim()) newErrors.name = "Project name is required";
-        if (!formData.startDate) newErrors.startDate = "Start date is required";
-        if (!formData.endDate) newErrors.endDate = "End date is required";
-        if (!formData.managerId)
-          newErrors.managerId = "Project manager is required";
-        if (
-          formData.startDate &&
-          formData.endDate &&
-          new Date(formData.startDate) >= new Date(formData.endDate)
-        ) {
-          newErrors.endDate = "End date must be after start date";
+        if (!formData.name.trim()) newErrors.name = "Project name is required"
+        if (!formData.startDate) newErrors.startDate = "Start date is required"
+        if (!formData.endDate) newErrors.endDate = "End date is required"
+        if (!formData.managerId) newErrors.managerId = "Project manager is required"
+        if (formData.startDate && formData.endDate && new Date(formData.startDate) >= new Date(formData.endDate)) {
+          newErrors.endDate = "End date must be after start date"
         }
-        break;
+        break
       case 2:
-        if (!formData.clientName.trim())
-          newErrors.clientName = "Client name is required";
-        if (!formData.location.trim())
-          newErrors.location = "Project location is required";
-        break;
+        if (!formData.clientName.trim()) newErrors.clientName = "Client name is required"
+        if (!formData.location.trim()) newErrors.location = "Project location is required"
+        break
       case 3:
-        if (formData.estimatedTeamSize < 1)
-          newErrors.estimatedTeamSize = "Team size must be at least 1";
-        break;
+        if (formData.estimatedTeamSize < 1) newErrors.estimatedTeamSize = "Team size must be at least 1"
+        break
       case 4:
         // Final validation - check all required fields
-        if (!formData.name.trim()) newErrors.name = "Project name is required";
-        if (!formData.clientName.trim())
-          newErrors.clientName = "Client name is required";
-        if (!formData.location.trim())
-          newErrors.location = "Project location is required";
-        break;
+        if (!formData.name.trim()) newErrors.name = "Project name is required"
+        if (!formData.clientName.trim()) newErrors.clientName = "Client name is required"
+        if (!formData.location.trim()) newErrors.location = "Project location is required"
+        break
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const nextStep = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+      setCurrentStep(prev => Math.min(prev + 1, totalSteps))
     }
-  };
+  }
 
   const prevStep = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
-  };
+    setCurrentStep(prev => Math.max(prev - 1, 1))
+  }
 
   const handleInputChange = (field: keyof ProjectFormData, value: any) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData(prev => ({ ...prev, [field]: value }))
     if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: "" }));
+      setErrors(prev => ({ ...prev, [field]: "" }))
     }
-  };
+  }
 
   const addMilestone = () => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      milestones: [
-        ...prev.milestones,
-        { name: "", dueDate: "", description: "" },
-      ],
-    }));
-  };
+      milestones: [...prev.milestones, { name: "", dueDate: "", description: "" }]
+    }))
+  }
 
   const updateMilestone = (index: number, field: string, value: string) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      milestones: prev.milestones.map((milestone, i) =>
+      milestones: prev.milestones.map((milestone, i) => 
         i === index ? { ...milestone, [field]: value } : milestone
-      ),
-    }));
-  };
+      )
+    }))
+  }
 
   const removeMilestone = (index: number) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      milestones: prev.milestones.filter((_, i) => i !== index),
-    }));
-  };
+      milestones: prev.milestones.filter((_, i) => i !== index)
+    }))
+  }
 
   const handleSubmit = () => {
     if (validateStep(4)) {
@@ -212,29 +185,27 @@ export function AddProjectWizard() {
         progress: 0,
         phase: formData.status,
         manager: {
-          name:
-            mockUsers.find((u) => u.id === formData.managerId)?.name ||
-            "Unknown",
-          avatar: "",
+          name: mockUsers.find(u => u.id === formData.managerId)?.name || "Unknown",
+          avatar: ""
         },
         teamSize: formData.estimatedTeamSize,
         budget: formData.estimatedBudget || "TBD",
-        location: formData.location,
-      };
+        location: formData.location
+      }
 
       // In a real app, you would save this to your backend
-      console.log("Creating new project:", newProject);
-
+      console.log("Creating new project:", newProject)
+      
       // Navigate back to projects page
-      navigateBack();
+      navigateBack()
     }
-  };
+  }
 
   const handleSaveDraft = () => {
     // In a real app, you would save the draft to your backend
-    console.log("Saving draft:", formData);
-    navigateBack();
-  };
+    console.log("Saving draft:", formData)
+    navigateBack()
+  }
 
   const renderStepContent = () => {
     switch (currentStep) {
@@ -253,10 +224,7 @@ export function AddProjectWizard() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="project-status">Status</Label>
-                <Select
-                  value={formData.status}
-                  onValueChange={(value) => handleInputChange("status", value)}
-                >
+                <Select value={formData.status} onValueChange={(value) => handleInputChange("status", value)}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -279,9 +247,7 @@ export function AddProjectWizard() {
                 placeholder="Enter project name"
                 className={errors.name ? "border-red-500" : ""}
               />
-              {errors.name && (
-                <p className="text-sm text-red-500">{errors.name}</p>
-              )}
+              {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
             </div>
 
             <div className="space-y-2">
@@ -289,9 +255,7 @@ export function AddProjectWizard() {
               <Textarea
                 id="project-description"
                 value={formData.description}
-                onChange={(e) =>
-                  handleInputChange("description", e.target.value)
-                }
+                onChange={(e) => handleInputChange("description", e.target.value)}
                 placeholder="Describe the project objectives and scope"
                 rows={4}
               />
@@ -304,14 +268,10 @@ export function AddProjectWizard() {
                   id="start-date"
                   type="date"
                   value={formData.startDate}
-                  onChange={(e) =>
-                    handleInputChange("startDate", e.target.value)
-                  }
+                  onChange={(e) => handleInputChange("startDate", e.target.value)}
                   className={errors.startDate ? "border-red-500" : ""}
                 />
-                {errors.startDate && (
-                  <p className="text-sm text-red-500">{errors.startDate}</p>
-                )}
+                {errors.startDate && <p className="text-sm text-red-500">{errors.startDate}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="end-date">End Date *</Label>
@@ -322,43 +282,28 @@ export function AddProjectWizard() {
                   onChange={(e) => handleInputChange("endDate", e.target.value)}
                   className={errors.endDate ? "border-red-500" : ""}
                 />
-                {errors.endDate && (
-                  <p className="text-sm text-red-500">{errors.endDate}</p>
-                )}
+                {errors.endDate && <p className="text-sm text-red-500">{errors.endDate}</p>}
               </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="project-manager">Project Manager *</Label>
-              <Select
-                value={formData.managerId}
-                onValueChange={(value) => handleInputChange("managerId", value)}
-              >
-                <SelectTrigger
-                  className={errors.managerId ? "border-red-500" : ""}
-                >
+              <Select value={formData.managerId} onValueChange={(value) => handleInputChange("managerId", value)}>
+                <SelectTrigger className={errors.managerId ? "border-red-500" : ""}>
                   <SelectValue placeholder="Select project manager" />
                 </SelectTrigger>
                 <SelectContent>
-                  {mockUsers
-                    .filter(
-                      (user) =>
-                        user.role.includes("Manager") ||
-                        user.role.includes("Engineer")
-                    )
-                    .map((user) => (
-                      <SelectItem key={user.id} value={user.id}>
-                        {user.name} - {user.role}
-                      </SelectItem>
-                    ))}
+                  {mockUsers.filter(user => user.role.includes("Manager") || user.role.includes("Engineer")).map(user => (
+                    <SelectItem key={user.id} value={user.id}>
+                      {user.name} - {user.role}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
-              {errors.managerId && (
-                <p className="text-sm text-red-500">{errors.managerId}</p>
-              )}
+              {errors.managerId && <p className="text-sm text-red-500">{errors.managerId}</p>}
             </div>
           </div>
-        );
+        )
 
       case 2:
         return (
@@ -368,15 +313,11 @@ export function AddProjectWizard() {
               <Input
                 id="client-name"
                 value={formData.clientName}
-                onChange={(e) =>
-                  handleInputChange("clientName", e.target.value)
-                }
+                onChange={(e) => handleInputChange("clientName", e.target.value)}
                 placeholder="Enter client or company name"
                 className={errors.clientName ? "border-red-500" : ""}
               />
-              {errors.clientName && (
-                <p className="text-sm text-red-500">{errors.clientName}</p>
-              )}
+              {errors.clientName && <p className="text-sm text-red-500">{errors.clientName}</p>}
             </div>
 
             <div className="space-y-2">
@@ -389,23 +330,16 @@ export function AddProjectWizard() {
                 rows={3}
                 className={errors.location ? "border-red-500" : ""}
               />
-              {errors.location && (
-                <p className="text-sm text-red-500">{errors.location}</p>
-              )}
+              {errors.location && <p className="text-sm text-red-500">{errors.location}</p>}
               <p className="text-sm text-muted-foreground">
-                Include full address, city, state, and any relevant location
-                details
+                Include full address, city, state, and any relevant location details
               </p>
             </div>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">
-                  Additional Location Details
-                </CardTitle>
-                <CardDescription>
-                  Optional information about the project site
-                </CardDescription>
+                <CardTitle className="text-base">Additional Location Details</CardTitle>
+                <CardDescription>Optional information about the project site</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
@@ -427,7 +361,7 @@ export function AddProjectWizard() {
               </CardContent>
             </Card>
           </div>
-        );
+        )
 
       case 3:
         return (
@@ -435,39 +369,25 @@ export function AddProjectWizard() {
             <div className="space-y-2">
               <Label htmlFor="team-size">Estimated Team Size *</Label>
               <Input
-                id="team-size"
+                id="team-size" 
                 type="number"
                 min="1"
                 value={formData.estimatedTeamSize}
-                onChange={(e) =>
-                  handleInputChange(
-                    "estimatedTeamSize",
-                    parseInt(e.target.value) || 1
-                  )
-                }
+                onChange={(e) => handleInputChange("estimatedTeamSize", parseInt(e.target.value) || 1)}
                 className={errors.estimatedTeamSize ? "border-red-500" : ""}
               />
-              {errors.estimatedTeamSize && (
-                <p className="text-sm text-red-500">
-                  {errors.estimatedTeamSize}
-                </p>
-              )}
+              {errors.estimatedTeamSize && <p className="text-sm text-red-500">{errors.estimatedTeamSize}</p>}
             </div>
 
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <Label>Key Milestones</Label>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={addMilestone}
-                >
+                <Button type="button" variant="outline" size="sm" onClick={addMilestone}>
                   <Target className="h-4 w-4 mr-2" />
                   Add Milestone
                 </Button>
               </div>
-
+              
               {formData.milestones.map((milestone, index) => (
                 <Card key={index}>
                   <CardContent className="pt-4">
@@ -475,9 +395,9 @@ export function AddProjectWizard() {
                       <div className="flex items-center justify-between">
                         <h4 className="font-medium">Milestone {index + 1}</h4>
                         {formData.milestones.length > 1 && (
-                          <Button
-                            type="button"
-                            variant="ghost"
+                          <Button 
+                            type="button" 
+                            variant="ghost" 
                             size="sm"
                             onClick={() => removeMilestone(index)}
                           >
@@ -485,15 +405,13 @@ export function AddProjectWizard() {
                           </Button>
                         )}
                       </div>
-
+                      
                       <div className="grid gap-4 md:grid-cols-2">
                         <div className="space-y-2">
                           <Label>Milestone Name</Label>
                           <Input
                             value={milestone.name}
-                            onChange={(e) =>
-                              updateMilestone(index, "name", e.target.value)
-                            }
+                            onChange={(e) => updateMilestone(index, "name", e.target.value)}
                             placeholder="e.g., Foundation Complete"
                           />
                         </div>
@@ -502,24 +420,16 @@ export function AddProjectWizard() {
                           <Input
                             type="date"
                             value={milestone.dueDate}
-                            onChange={(e) =>
-                              updateMilestone(index, "dueDate", e.target.value)
-                            }
+                            onChange={(e) => updateMilestone(index, "dueDate", e.target.value)}
                           />
                         </div>
                       </div>
-
+                      
                       <div className="space-y-2">
                         <Label>Description</Label>
                         <Textarea
                           value={milestone.description}
-                          onChange={(e) =>
-                            updateMilestone(
-                              index,
-                              "description",
-                              e.target.value
-                            )
-                          }
+                          onChange={(e) => updateMilestone(index, "description", e.target.value)}
                           placeholder="Describe what constitutes completion of this milestone"
                           rows={2}
                         />
@@ -532,12 +442,8 @@ export function AddProjectWizard() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">
-                  Budget Information (Optional)
-                </CardTitle>
-                <CardDescription>
-                  You can add detailed budget information later
-                </CardDescription>
+                <CardTitle className="text-base">Budget Information (Optional)</CardTitle>
+                <CardDescription>You can add detailed budget information later</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
@@ -546,20 +452,13 @@ export function AddProjectWizard() {
                     <Input
                       id="budget"
                       value={formData.estimatedBudget}
-                      onChange={(e) =>
-                        handleInputChange("estimatedBudget", e.target.value)
-                      }
+                      onChange={(e) => handleInputChange("estimatedBudget", e.target.value)}
                       placeholder="e.g., $500,000"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="currency">Currency</Label>
-                    <Select
-                      value={formData.currency}
-                      onValueChange={(value) =>
-                        handleInputChange("currency", value)
-                      }
-                    >
+                    <Select value={formData.currency} onValueChange={(value) => handleInputChange("currency", value)}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -575,19 +474,15 @@ export function AddProjectWizard() {
               </CardContent>
             </Card>
           </div>
-        );
+        )
 
       case 4:
         return (
           <div className="space-y-6">
             <div className="text-center">
               <CheckCircle className="h-16 w-16 mx-auto text-green-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">
-                Review Project Details
-              </h3>
-              <p className="text-muted-foreground">
-                Please review all information before creating the project
-              </p>
+              <h3 className="text-xl font-semibold mb-2">Review Project Details</h3>
+              <p className="text-muted-foreground">Please review all information before creating the project</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -613,20 +508,14 @@ export function AddProjectWizard() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Manager:</span>
-                    <span>
-                      {mockUsers.find((u) => u.id === formData.managerId)?.name}
-                    </span>
+                    <span>{mockUsers.find(u => u.id === formData.managerId)?.name}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Duration:</span>
                     <span>
-                      {formData.startDate &&
-                        formData.endDate &&
-                        `${Math.ceil(
-                          (new Date(formData.endDate).getTime() -
-                            new Date(formData.startDate).getTime()) /
-                            (1000 * 60 * 60 * 24)
-                        )} days`}
+                      {formData.startDate && formData.endDate && 
+                        `${Math.ceil((new Date(formData.endDate).getTime() - new Date(formData.startDate).getTime()) / (1000 * 60 * 60 * 24))} days`
+                      }
                     </span>
                   </div>
                 </CardContent>
@@ -665,10 +554,7 @@ export function AddProjectWizard() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Milestones:</span>
-                    <span>
-                      {formData.milestones.filter((m) => m.name.trim()).length}{" "}
-                      defined
-                    </span>
+                    <span>{formData.milestones.filter(m => m.name.trim()).length} defined</span>
                   </div>
                 </CardContent>
               </Card>
@@ -682,9 +568,7 @@ export function AddProjectWizard() {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">
-                      Estimated Budget:
-                    </span>
+                    <span className="text-muted-foreground">Estimated Budget:</span>
                     <span>{formData.estimatedBudget || "Not specified"}</span>
                   </div>
                   <div className="flex justify-between">
@@ -698,9 +582,7 @@ export function AddProjectWizard() {
             {formData.description && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base">
-                    Project Description
-                  </CardTitle>
+                  <CardTitle className="text-base">Project Description</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm">{formData.description}</p>
@@ -708,21 +590,21 @@ export function AddProjectWizard() {
               </Card>
             )}
           </div>
-        );
+        )
 
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   const stepTitles = [
     "Project Details",
-    "Location & Client",
+    "Location & Client", 
     "Team & Resources",
-    "Review & Submit",
-  ];
+    "Review & Submit"
+  ]
 
-  const stepIcons = [FileText, MapPin, Users, CheckCircle];
+  const stepIcons = [FileText, MapPin, Users, CheckCircle]
 
   return (
     <div className="space-y-6">
@@ -734,12 +616,8 @@ export function AddProjectWizard() {
             Back to Projects
           </Button>
           <div>
-            <h1 className="text-orange-800 dark:text-orange-200">
-              Create New Project
-            </h1>
-            <p className="text-muted-foreground">
-              Step {currentStep} of {totalSteps}: {stepTitles[currentStep - 1]}
-            </p>
+            <h1 className="text-orange-800 dark:text-orange-200">Create New Project</h1>
+            <p className="text-muted-foreground">Step {currentStep} of {totalSteps}: {stepTitles[currentStep - 1]}</p>
           </div>
         </div>
         <div className="flex items-center space-x-2">
@@ -762,43 +640,34 @@ export function AddProjectWizard() {
               <span>{Math.round(progress)}% Complete</span>
             </div>
             <Progress value={progress} className="h-2" />
-
+            
             <div className="flex items-center justify-between">
               {stepTitles.map((title, index) => {
-                const StepIcon = stepIcons[index];
-                const stepNumber = index + 1;
-                const isActive = stepNumber === currentStep;
-                const isCompleted = stepNumber < currentStep;
-
+                const StepIcon = stepIcons[index]
+                const stepNumber = index + 1
+                const isActive = stepNumber === currentStep
+                const isCompleted = stepNumber < currentStep
+                
                 return (
-                  <div
-                    key={title}
-                    className="flex flex-col items-center space-y-2"
-                  >
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
-                        isCompleted
-                          ? "bg-green-500 border-green-500 text-white"
-                          : isActive
-                          ? "bg-orange-500 border-orange-500 text-white"
-                          : "bg-background border-muted-foreground/30"
-                      }`}
-                    >
+                  <div key={title} className="flex flex-col items-center space-y-2">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
+                      isCompleted ? "bg-green-500 border-green-500 text-white" :
+                      isActive ? "bg-orange-500 border-orange-500 text-white" :
+                      "bg-background border-muted-foreground/30"
+                    }`}>
                       {isCompleted ? (
                         <CheckCircle className="h-5 w-5" />
                       ) : (
                         <StepIcon className="h-5 w-5" />
                       )}
                     </div>
-                    <span
-                      className={`text-xs text-center max-w-20 ${
-                        isActive ? "font-medium" : "text-muted-foreground"
-                      }`}
-                    >
+                    <span className={`text-xs text-center max-w-20 ${
+                      isActive ? "font-medium" : "text-muted-foreground"
+                    }`}>
                       {title}
                     </span>
                   </div>
-                );
+                )
               })}
             </div>
           </div>
@@ -810,48 +679,42 @@ export function AddProjectWizard() {
         <CardHeader>
           <CardTitle className="flex items-center">
             {(() => {
-              const CurrentStepIcon = stepIcons[currentStep - 1];
-              return <CurrentStepIcon className="h-5 w-5 mr-2" />;
+              const CurrentStepIcon = stepIcons[currentStep - 1]
+              return <CurrentStepIcon className="h-5 w-5 mr-2" />
             })()}
             {stepTitles[currentStep - 1]}
           </CardTitle>
           <CardDescription>
-            {currentStep === 1 &&
-              "Enter basic project information and timeline"}
+            {currentStep === 1 && "Enter basic project information and timeline"}
             {currentStep === 2 && "Specify client details and project location"}
             {currentStep === 3 && "Define team requirements and key milestones"}
-            {currentStep === 4 &&
-              "Review all details before creating the project"}
+            {currentStep === 4 && "Review all details before creating the project"}
           </CardDescription>
         </CardHeader>
-        <CardContent>{renderStepContent()}</CardContent>
+        <CardContent>
+          {renderStepContent()}
+        </CardContent>
       </Card>
 
       {/* Navigation Buttons */}
       <div className="flex items-center justify-between">
-        <Button
-          variant="outline"
-          onClick={prevStep}
+        <Button 
+          variant="outline" 
+          onClick={prevStep} 
           disabled={currentStep === 1}
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Previous
         </Button>
-
+        
         <div className="flex items-center space-x-2">
           {currentStep < totalSteps ? (
-            <Button
-              onClick={nextStep}
-              className="bg-orange-500 hover:bg-orange-600"
-            >
+            <Button onClick={nextStep} className="bg-orange-500 hover:bg-orange-600">
               Continue
               <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
           ) : (
-            <Button
-              onClick={handleSubmit}
-              className="bg-green-600 hover:bg-green-700"
-            >
+            <Button onClick={handleSubmit} className="bg-green-600 hover:bg-green-700">
               <CheckCircle className="h-4 w-4 mr-2" />
               Create Project
             </Button>
@@ -859,5 +722,5 @@ export function AddProjectWizard() {
         </div>
       </div>
     </div>
-  );
+  )
 }

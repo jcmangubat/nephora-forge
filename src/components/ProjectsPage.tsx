@@ -80,7 +80,7 @@ const mockProjects: Project[] = [
     endDate: "2025-10-20",
     progress: 28,
     phase: "In Progress",
-    manager: { name: "Emily delos Reyes", avatar: "" },
+    manager: { name: "Emily Delgado", avatar: "" },
     teamSize: 32,
     budget: "₱67.8M",
     location: "International Airport"
@@ -194,7 +194,7 @@ export function ProjectsPage() {
             <DollarSign className="h-4 w-4 text-green-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">₱186.2M</div>
+            <div className="text-2xl font-bold">$186.2M</div>
             <p className="text-xs text-muted-foreground">Across all active projects</p>
           </CardContent>
         </Card>

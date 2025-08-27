@@ -113,9 +113,9 @@ const mockEquipment: Equipment[] = [
     model: "320D",
     serialNumber: "CAT320D001",
     status: "In Use",
-    location: "Downtown Site",
-    assignedProject: "Downtown Office Complex",
-    assignedTo: "Mike Rodriguez",
+    location: "Makati Site",
+    assignedProject: "Makati CBD Office Complex",
+    assignedTo: "John dela Cruz",
     purchaseDate: "2022-01-15",
     lastMaintenance: "2024-01-15",
     nextMaintenance: "2024-04-15",
@@ -129,7 +129,7 @@ const mockEquipment: Equipment[] = [
         description: "Minor hydraulic fluid leak from main cylinder",
         severity: "Medium",
         status: "In Progress",
-        reportedBy: "Juan dela Cruz",
+        reportedBy: "Jose Dela Cruz",
         reportedDate: "2024-01-20"
       }
     ],
@@ -201,9 +201,9 @@ const mockEquipment: Equipment[] = [
     model: "D6T",
     serialNumber: "D6T004",
     status: "In Use",
-    location: "Bridge Site",
-    assignedProject: "Bridge Construction",
-    assignedTo: "Carlos Martinez",
+    location: "Skyway Site",
+    assignedProject: "Skyway Bridge Extension",
+    assignedTo: "Carlos Ramirez",
     purchaseDate: "2020-09-12",
     lastMaintenance: "2023-12-20",
     nextMaintenance: "2024-06-20",
@@ -251,7 +251,7 @@ export function EquipmentPage() {
   const [categoryFilter, setCategoryFilter] = useState("All")
   const [statusFilter, setStatusFilter] = useState("All")
   const [locationFilter, setLocationFilter] = useState("All")
-  const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(null)
+  const [selectedEquipment, setSelectedEquipment] = useState(null as Equipment | null)
   const [showAddEquipment, setShowAddEquipment] = useState(false)
 
   const filteredEquipment = mockEquipment.filter(equipment => {
@@ -547,7 +547,7 @@ export function EquipmentPage() {
                 <CardDescription>Current equipment assignments</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
-                {["Downtown Office Complex", "Bridge Construction", "Airport Terminal"].map(project => {
+                {["Makati CBD Office Complex", "Skyway Bridge Extension", "NAIA Terminal Expansion"].map(project => {
                   const projectEquipment = mockEquipment.filter(e => e.assignedProject === project)
                   return (
                     <div key={project} className="border rounded-lg p-3">
@@ -697,7 +697,7 @@ export function EquipmentPage() {
                   </div>
                   <div className="text-center p-4 border rounded-lg">
                     <DollarSign className="h-8 w-8 mx-auto text-green-500 mb-2" />
-                    <div className="text-2xl font-bold">₱1.2M</div>
+                    <div className="text-2xl font-bold">₱60M</div>
                     <p className="text-sm text-muted-foreground">Revenue Generated</p>
                   </div>
                   <div className="text-center p-4 border rounded-lg">
@@ -723,11 +723,11 @@ export function EquipmentPage() {
                       <div>
                         <p className="font-medium">{equipment.name}</p>
                         <p className="text-sm text-muted-foreground">
-                          {equipment.totalHours}h × ${equipment.costPerHour}/h
+                          {equipment.totalHours}h × ₱{equipment.costPerHour.toLocaleString()}/h
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium">${totalCost.toLocaleString()}</p>
+                        <p className="font-medium">₱{totalCost.toLocaleString()}</p>
                         <p className={`text-sm ${utilization > 70 ? 'text-green-600' : 'text-yellow-600'}`}>
                           {utilization}% utilized
                         </p>
@@ -788,8 +788,8 @@ export function EquipmentPage() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="equipment-cost">Cost per Hour ($)</Label>
-                  <Input id="equipment-cost" type="number" placeholder="e.g., 125" />
+                  <Label htmlFor="equipment-cost">Cost per Hour (���)</Label>
+                  <Input id="equipment-cost" type="number" placeholder="e.g., 6250" />
                 </div>
               </div>
               
@@ -872,7 +872,7 @@ export function EquipmentPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-sm text-muted-foreground">Cost per Hour:</span>
-                      <span className="text-sm">${selectedEquipment.costPerHour}</span>
+                      <span className="text-sm">₱{selectedEquipment.costPerHour.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>

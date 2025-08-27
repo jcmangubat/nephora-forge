@@ -44,7 +44,7 @@ const personnel = [
   },
   {
     id: "3",
-    name: "Pete Katigbak",
+    name: "David Thompson",
     email: "david.thompson@nephoraforge.com",
     role: "Equipment Operator",
     certification: "NCCCO Crane",

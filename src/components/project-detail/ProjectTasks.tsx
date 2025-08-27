@@ -45,7 +45,7 @@ const mockTasks: Task[] = [
     title: "Site Survey and Analysis",
     description: "Complete topographical survey and soil analysis",
     status: "done",
-    assignee: "Juan dela Cruz",
+    assignee: "John dela Cruz",
     dueDate: "2024-08-20",
     priority: "high",
     tags: ["Planning", "Survey"]
@@ -95,7 +95,7 @@ const mockTasks: Task[] = [
     title: "Plumbing Installation",
     description: "Install main plumbing lines and fixtures",
     status: "todo",
-    assignee: "Emily delos Reyes",
+    assignee: "Emily Delgado",
     dueDate: "2024-09-05",
     priority: "medium",
     tags: ["Plumbing", "MEP"]
@@ -115,7 +115,7 @@ const mockTasks: Task[] = [
     title: "Safety Inspection",
     description: "Conduct comprehensive safety compliance review",
     status: "in-progress",
-    assignee: "Rachelle Aqui",
+    assignee: "Protacio Alon",
     dueDate: "2024-08-26",
     priority: "high",
     tags: ["Safety", "Inspection"]
@@ -292,9 +292,7 @@ export function ProjectTasks({ project }: ProjectTasksProps) {
               </div>
               <div className="space-y-3">
                 {getTasksByStatus(column.id).map(task => (
-                  <div key={task.id}>
-                    <TaskCard task={task} />
-                  </div>
+                  <TaskCard key={task.id} task={task} />
                 ))}
                 <Button 
                   variant="dashed" 
